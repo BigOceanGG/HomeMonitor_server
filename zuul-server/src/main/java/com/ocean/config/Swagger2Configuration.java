@@ -22,7 +22,7 @@ public class Swagger2Configuration {
 	public Docket buildDocket() {
 		System.out.println("----------------------Swagger2Configuration-------------------");
 		return new Docket(DocumentationType.SWAGGER_2).apiInfo(buildApiInf()).select()
-				.apis(RequestHandlerSelectors.basePackage("com.pulsar"))// 要扫描的对内API(Controller)基础包,要扫描的对外API(Controller)基础包
+				.apis(RequestHandlerSelectors.basePackage("com.ocean"))// 要扫描的对内API(Controller)基础包,要扫描的对外API(Controller)基础包
 				.paths(PathSelectors.any()).build();
 		
 	}

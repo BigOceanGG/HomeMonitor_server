@@ -8,5 +8,9 @@
     <artifactId>HomeMonitor</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <modules>
+        <module>zuul-server</module>
+    </modules>
+
 
 </project>

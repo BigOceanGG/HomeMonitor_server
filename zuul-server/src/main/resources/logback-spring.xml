@@ -76,7 +76,7 @@
     </contextListener>
 
     <springProfile name="test"><!--测试环境打印debug级别 包括sql语句-->
-        <logger name="com.pulsar" level="DEBUG"/>
+        <logger name="com.ocean" level="DEBUG"/>
     </springProfile>
 
     <root level="INFO">
