@@ -1,4 +1,4 @@
-package com.pulsar;
+package com.ocean;
 
 import com.ocean.filter.AccessFilter;
 import org.springframework.boot.builder.SpringApplicationBuilder;
