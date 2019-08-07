@@ -1,0 +1,35 @@
+secret: 123456
+expire_time: 86400000
+
+spring:
+  http:
+    multipart:
+      maxFileSize: 20Mb
+      maxRequestSize: 100Mb
+
+zuul:
+  sensitive-headers:
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  routes:  # routes to serviceId
+    ribbon-server-feign:
+      path: /api/**
+      serviceId: ribbon-server
+    manager-ribbon-server-feign:
+      path: /manager/**
+      serviceId: manager-ribbon-server
+    oauth2-server-feign:
+      path: /oauth2/**
+      serviceId: oauth2-server
+    ribbon-server-feign-url: # routes to url
+      path: /api/**
+      url: http://localhost:3000/
+    manager-ribbon-server-feign-url:
+      path: /manager/**
+      url: http://localhost:3200/
+    oauth2-server-feign-url:
+      path: /oauth2/**
+      url: http://localhost:2900/
+
+
+
+

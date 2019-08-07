@@ -1,0 +1,9 @@
+server:
+  port: 2018
+
+spring:
+  application:
+    name: config-center-server
+  profiles:
+    active: test
+

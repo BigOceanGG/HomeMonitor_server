@@ -1,0 +1,74 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          #配置配置中心GIT地址
+          uri: http://git.pulsar.link/largeUser/config-center-file-store.git
+          #搜索路径:默认会搜索根目录下的文件,也可以指定其他目录,多个以'逗号'分隔
+          searchPaths: '{application}'
+          #GIT访问帐号及密码 #后期可以设置一个配置中心专用的git账号
+          username: configcenter
+          password: 'configcenter'
+          basedir: /config/configcenter/files #该目录用于存放从GIT仓库拉回的配置文件
+        overrides: #公共配置,所有服务都会有的属性
+          spring:
+            datasource: #数据库配置
+              url: jdbc:mysql://rm-j6c4gp26c660hbu9t.mysql.rds.aliyuncs.com:3306/${spring.datasource.name}?serverTimezone=CTT&useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
+              driver-class-name: com.mysql.jdbc.Driver
+              username: biguser
+              password: Ej^NAcsKl5B0oPCF
+              # 使用druid数据源
+              type: com.alibaba.druid.pool.DruidDataSource
+              filters: stat
+              maxActive: 20
+              initialSize: 1
+              maxWait: 60000
+              minIdle: 1
+              timeBetweenEvictionRunsMillis: 60000
+              minEvictableIdleTimeMillis: 300000
+              validationQuery: select 'x'
+              testWhileIdle: true
+              testOnBorrow: false
+              testOnReturn: false
+              poolPreparedStatements: true
+              maxOpenPreparedStatements: 20
+            rabbitmq: #rabbitmq配置
+              host: 172.31.108.12
+              port: 5672
+              username: configCenter
+              password: configCenter
+            cloud:
+              config:
+                overrideNone: false #此配置为TRUE，可以让在测试环境让本地配置的参数覆盖远程配置，只用于测试中，生产环境不能有
+          eureka: #eureka配置
+            client:
+              serviceUrl:
+                defaultZone: ${eureka.client.serviceUrl.defaultZone}
+              healthcheck:
+                enabled: true
+            instance:
+              prefer-ip-address: true
+          mybatis:
+            log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+            mapper-locations: classpath:mapping/*.xml
+          pagehelper: #pagehelper
+            helperDialect: mysql
+            reasonable: true
+            supportMethodsArguments: true
+            params: count=countSql
+  rabbitmq:
+    host: 172.31.108.12
+    port: 5672
+    username: configCenter
+    password: configCenter
+
+eureka: #eureka配置
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:2000/eureka/
+
+security:
+  user:
+    name: configCenter
+    password: TE6J41AlKdorOpehXD9mBWnNfYc0LgtG
