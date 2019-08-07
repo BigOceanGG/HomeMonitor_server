@@ -4,7 +4,7 @@ spring:
     application:
       name: zuul-server
     datasource:
-      name: largeuserdb
+      name: homemonitor
     profiles:
       active: test
     jackson:
@@ -18,7 +18,7 @@ spring:
         uri: http://localhost:2018 #http://config${spring.profiles.active}.pulsar.com:2018  #配置中心服务器的地址
         #配置中心服务器权限验证
         username: configCenter
-        password: TE6J41AlKdorOpehXD9mBWnNfYc0LgtG
+        password: 123456
 
 
 ##timeout config
