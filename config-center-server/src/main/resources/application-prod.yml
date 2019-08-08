@@ -4,7 +4,7 @@ spring:
       server:
         git:
           #配置配置中心GIT地址
-          uri: https://github.com/BigOceanGG/HomeMonitor_server/tree/master/config-center-file-store.git
+          uri: https://github.com/BigOceanGG/config-center-file-store.git
           #搜索路径:默认会搜索根目录下的文件,也可以指定其他目录,多个以'逗号'分隔
           searchPaths: '{application}'
           #GIT访问帐号及密码 #后期可以设置一个配置中心专用的git账号
