@@ -1,0 +1,24 @@
+server:
+  port: 2800
+spring:
+    application:
+      name: redis-server
+    datasource:
+      name: largeuserdb
+    profiles:
+      active: test
+    jackson:
+        date-format: yyyy-MM-dd HH:mm:ss
+        locale: zh_CN
+        time-zone: "GMT+8"
+    cloud:
+      config:
+        label: master #${spring.profiles.active}  #git创建的分支
+        profile: ${spring.profiles.active}  #应用的环境(test,prod)
+        uri: http://localhost:2018
+        #配置中心服务器权限验证
+        username: configCenter
+        password: TE6J41AlKdorOpehXD9mBWnNfYc0LgtG
+
+
+

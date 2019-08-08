@@ -15,7 +15,7 @@ spring:
       config:
         label: master #${spring.profiles.active}  #git创建的分支
         profile: ${spring.profiles.active}  #应用的环境(test,prod)
-        uri: http://localhost:2018 #http://config${spring.profiles.active}.pulsar.com:2018  #配置中心服务器的地址
+        uri: http://localhost:2018
         #配置中心服务器权限验证
         username: configCenter
         password: TE6J41AlKdorOpehXD9mBWnNfYc0LgtG
