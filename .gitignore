@@ -1,3 +1,5 @@
 /zuul-server/target/
 /eureka-server/target/
 /.idea/
+/logs/
+/config-center-file-store/

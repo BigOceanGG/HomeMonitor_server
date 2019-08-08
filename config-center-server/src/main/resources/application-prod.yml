@@ -10,11 +10,11 @@ spring:
           #GIT访问帐号及密码 #后期可以设置一个配置中心专用的git账号
           username: 3408598@qq.com
           password: rong.rong123
-          basedir: /config/configcenter/files #该目录用于存放从GIT仓库拉回的配置文件
+          basedir: /home/zhj/configcenter/files #该目录用于存放从GIT仓库拉回的配置文件
         overrides: #公共配置,所有服务都会有的属性
           spring:
             datasource: #数据库配置
-              url: jdbc:mysql://127.0.0.1:3306/${spring.datasource.name}?serverTimezone=CTT&useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
+              url: jdbc:mysql://172.16.2.224:3306/${spring.datasource.name}?serverTimezone=CTT&useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
               driver-class-name: com.mysql.jdbc.Driver
               username: root
               password: 123456
@@ -34,7 +34,7 @@ spring:
               poolPreparedStatements: true
               maxOpenPreparedStatements: 20
             rabbitmq: #rabbitmq配置
-              host: 127.0.0.1
+              host: 172.16.2.224
               port: 5672
               username: homeuser
               password: 123456
@@ -58,7 +58,7 @@ spring:
             supportMethodsArguments: true
             params: count=countSql
   rabbitmq:
-    host: 127.0.0.1
+    host: 172.16.2.224
     port: 5672
     username: homeuser
     password: 123456
@@ -71,4 +71,4 @@ eureka: #eureka配置
 security:
   user:
     name: configCenter
-    password: 123456
+    password: TE6J41AlKdorOpehXD9mBWnNfYc0LgtG

@@ -18,7 +18,7 @@ spring:
         uri: http://localhost:2018 #http://config${spring.profiles.active}.pulsar.com:2018  #配置中心服务器的地址
         #配置中心服务器权限验证
         username: configCenter
-        password: 123456
+        password: TE6J41AlKdorOpehXD9mBWnNfYc0LgtG
 
 
 ##timeout config
