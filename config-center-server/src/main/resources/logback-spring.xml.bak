@@ -68,7 +68,7 @@
     </appender>-->
     <!--kafka end -->
 
-    <logger name="com.pulsar" level="${logback.loglevel}"/>
+    <logger name="com.ocean" level="${logback.loglevel}"/>
 
 
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
