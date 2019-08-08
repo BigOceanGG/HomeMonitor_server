@@ -1,4 +1,4 @@
-package com.pulsar.identity.domain;
+package com.ocean.identity.domain;
 import lombok.Data;
 
 @Data

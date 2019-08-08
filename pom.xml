@@ -12,6 +12,7 @@
         <module>eureka-server</module>
         <module>config-center-server</module>
         <module>zuul-server</module>
+        <module>common-package</module>
     </modules>
 
 

@@ -1,4 +1,4 @@
-package com.pulsar.redis.domain;
+package com.ocean.redis.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
