@@ -1,0 +1,3 @@
+jdbc.url=jdbc:mysql://rm-j6c4gp26c660hbu9t.mysql.rds.aliyuncs.com:3306/largeuserdb?serverTimezone=CTT&useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true
+jdbc.username=biguser
+jdbc.password=Ej^NAcsKl5B0oPCF

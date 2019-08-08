@@ -1,0 +1,9 @@
+package com.pulsar.identity.domain;
+import lombok.Data;
+
+@Data
+public class RedisInDto {
+    private String key;
+    private String value;
+    private int timeout;
+}
