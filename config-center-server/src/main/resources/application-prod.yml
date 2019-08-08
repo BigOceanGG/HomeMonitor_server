@@ -8,8 +8,8 @@ spring:
           #搜索路径:默认会搜索根目录下的文件,也可以指定其他目录,多个以'逗号'分隔
           searchPaths: '{application}'
           #GIT访问帐号及密码 #后期可以设置一个配置中心专用的git账号
-          username: 3408598@qq.com
-          password: rong.rong123
+          username: 
+          password:
           basedir: /home/zhj/configcenter/files #该目录用于存放从GIT仓库拉回的配置文件
         overrides: #公共配置,所有服务都会有的属性
           spring:
