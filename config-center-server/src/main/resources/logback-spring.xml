@@ -2,7 +2,7 @@
 <configuration scan="true">
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
-    <property name="APP_HOME" value="/logs/config-center-server"/>
+    <property name="APP_HOME" value="./logs/config-center-server"/>
     <property name="log.filename" value="config-center-server"/>
     <property name="logback.loglevel" value="INFO"/>
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
