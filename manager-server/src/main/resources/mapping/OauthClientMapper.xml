@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ocean.mapper.OauthClientMapper" >
+    <insert id="insertOauthClient" parameterType="com.ocean.application.domain.ApplicationInDto">
+        insert into oauth_client_details(client_id,client_secret,scope,authorized_grant_types,web_server_redirect_uri,access_token_validity,autoapprove,name,id)
+        values(#{applicationId},#{applicationKey},'user,extend','authorization_code,refresh_token,password,implicit,client_credentials',#{callbackAddress},43200,'true',#{applicationName},#{id})
+    </insert>
+
+    <update id="updateOauthClient"  parameterType="com.ocean.application.domain.ApplicationInDto">
+        UPDATE oauth_client_details
+        <set>
+            client_id=#{applicationId},
+            client_secret=#{applicationKey},
+            web_server_redirect_uri=#{callbackAddress},
+            name=#{applicationName}
+        </set>
+        WHERE id =#{id}
+    </update>
+
+</mapper>

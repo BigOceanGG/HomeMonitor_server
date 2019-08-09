@@ -1,6 +1,11 @@
 /zuul-server/target/
 /eureka-server/target/
 /redis-server/target/
+/common-package/target/
+/manager-server/target/
+/manager-ribbon-server/target/
+/config-center-server/target/
 /.idea/
 /logs/
 /config-center-file-store/
+*.iml

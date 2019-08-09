@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ocean.mapper.AppJoinMapper">
+    <resultMap id="BaseResultMap" type="com.ocean.application.domain.ApplicationOutDto">
+        <result column="id" property="id"/>
+        <result column="application_name" property="applicationName"/>
+        <result column="application_type" property="applicationType"/>
+        <result column="application_logo" property="applicationLogo"/>
+        <result column="application_summary" property="applicationSummary"/>
+        <result column="application_website" property="applicationWebsite"/>
+        <result column="authorization_type" property="authorizationType"/>
+        <result column="application_id" property="applicationId"/>
+        <result column="application_key" property="applicationKey"/>
+        <result column="enabled" property="enabled"/>
+        <result column="create_time" property="createTime"/>
+        <result column="user_id" property="userId"/>
+        <result column="user_type" property="userType"/>
+        <result column="callback_address" property="callbackAddress"/>
+        <result column="remark" property="remark"/>
+        <result column="approver" property="approver"/>
+        <result column="company_name" property="companyName"/>
+        <result column="contact_phone" property="contactPhone"/>
+        <result column="contact_email" property="contactEmail"/>
+        <result column="business_licence_no" property="businessLicenceNo"/>
+        <result column="business_licence_pic" property="businessLicencePic"/>
+        <result column="cert_no" property="certNo"/>
+        <result column="cert_front_pic" property="certFrontPic"/>
+        <result column="cert_back_pic" property="certBackPic"/>
+        <result column="linkman" property="linkMan"/>
+    </resultMap>
+
+    <insert id="addAppJoin" parameterType="com.ocean.application.domain.ApplicationInDto" useGeneratedKeys="true" keyProperty="id">
+        insert into t_authorization_info(application_name,application_type,application_logo,application_summary,application_website,authorization_type,application_id,application_key,enabled,create_time,user_id,
+        user_type,callback_address,remark,approver,company_name,contact_phone,contact_email,business_licence_no,business_licence_pic,cert_no,cert_front_pic,cert_back_pic,linkman)
+        values(#{applicationName},#{applicationType},#{applicationLogo},#{applicationSummary},#{applicationWebsite},#{authorizationType},#{applicationId},#{applicationKey},#{enabled},current_timestamp(),
+        #{userId},#{userType},#{callbackAddress},#{remark},#{approver},#{companyName},#{contactPhone},#{contactEmail},#{businessLicenceNo},#{businessLicencePic},#{certNo},#{certFrontPic},#{certBackPic},#{linkMan})
+    </insert>
+
+  <select id="findAppList" resultMap="BaseResultMap" parameterType="com.ocean.application.domain.ApplicationInDto">
+    select id,application_name,company_name,contact_phone,application_type,create_time,enabled
+    from t_authorization_info
+    <where>
+      1=1
+      <if test="id != null and id != ''">
+        and id = #{id}
+      </if>
+      <if test="applicationType != 0 and applicationType!=''">
+        and application_type = #{applicationType}
+      </if>
+      <if test="authorizationType != 0 and authorizationType!=''">
+        and authorization_type = #{authorizationType}
+      </if>
+      <if test="startTime != null and endTime != null and startTime != '' and endTime != ''">
+        and create_time BETWEEN #{startTime} and #{endTime}
+      </if>
+      <if test="enabled != null and  enabled!=''">
+        and enabled = #{enabled}
+      </if>
+    </where>
+    order by id asc
+  </select>
+
+  <update id="modifyAppInfo"  parameterType="com.ocean.application.domain.ApplicationInDto">
+    UPDATE t_authorization_info
+    <set>
+        application_name=#{applicationName},
+        application_type=#{applicationType},
+        application_logo=#{applicationLogo},
+        application_summary=#{applicationSummary},
+        application_website=#{applicationWebsite},
+        authorization_type=#{authorizationType},
+        application_id=#{applicationId},
+        application_key=#{applicationKey},
+        enabled=#{enabled},
+        remark=#{remark},
+        company_name=#{companyName},
+        contact_phone=#{contactPhone},
+        contact_email=#{contactEmail},
+        business_licence_no=#{businessLicenceNo},
+        business_licence_pic=#{businessLicencePic},
+        cert_no=#{certNo},
+        user_type=#{userType},
+        cert_front_pic=#{certFrontPic},
+        cert_back_pic=#{certBackPic},
+        callback_address=#{callbackAddress},
+        linkman=#{linkMan}
+    </set>
+    WHERE id =#{id}
+  </update>
+</mapper>

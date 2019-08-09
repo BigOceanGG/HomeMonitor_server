@@ -13,6 +13,8 @@
         <module>config-center-server</module>
         <module>zuul-server</module>
         <module>common-package</module>
+        <module>manager-ribbon-server</module>
+        <module>manager-server</module>
     </modules>
 
 

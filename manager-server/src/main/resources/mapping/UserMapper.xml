@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ocean.identity.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.ocean.identity.domain.UserOutDto" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="cellphone" property="cellphone" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    <result column="cert_no" property="certNo" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="wechat_no" property="wechatNo" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="enabled" property="enabled" jdbcType="INTEGER" />
+    <result column="origin" property="origin" jdbcType="INTEGER" />
+    <result column="approve_status" property="approveStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, password, cellphone, user_name, nick_name, email, birthday, avatar, 
+    sex, wechat_no, salt, create_time, update_time, enabled, origin, approve_status
+  </sql>
+
+  <select id="findUserList" resultMap="BaseResultMap" parameterType="com.ocean.identity.domain.UserInDto">
+    select id,
+            user_id,
+            cellphone,
+            user_name,
+            nick_name,
+            email,
+            birthday,
+            avatar,
+            cert_no,
+            sex,
+            wechat_no,
+            create_time,
+            update_time,
+            enabled,
+            origin,
+            approve_status
+      from t_user
+    <where>
+      <if test="userId != null and userId != ''" >
+        and (cellphone LIKE CONCAT('%', #{userId}, '%') or id LIKE CONCAT('%', #{userId}, '%'))
+      </if>
+      <if test="startTime != null and startTime != '' and endTime != null and endTime != ''" >
+        and create_time BETWEEN  #{startTime} and #{endTime}
+      </if>
+      <if test="approveStatus != null and approveStatus != ''">
+        and approve_status =#{approveStatus}
+      </if>
+      <if test="enabled != null and enabled != ''" >
+        and enabled =#{enabled}
+      </if>
+      <if test="origin != null and origin != ''" >
+        and origin =#{origin}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+  <update id="updateUserEnabled">
+    UPDATE t_user set enabled=#{enabled} where id=#{id}
+  </update>
+
+  <update id="updateUserApproveStatus">
+     UPDATE t_user set approve_status=#{approveStatus} where id=#{userId}
+  </update>
+</mapper>

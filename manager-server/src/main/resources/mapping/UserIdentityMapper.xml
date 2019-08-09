@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ocean.identity.mapper.IdentityMapper">
+    <resultMap id="BaseResultMap" type="com.ocean.identity.domain.UserIdentityOutDto">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="cellphone" property="cellphone" />
+        <result column="email" property="email" />
+        <result column="cert_no" property="certNo" />
+        <result column="user_name" property="userName" />
+        <result column="positive_img" property="positiveImg" />
+        <result column="back_img" property="backImg" />
+        <result column="hold_img" property="holdImg" />
+        <result column="create_time" property="createTime" />
+        <result column="state" property="state" />
+        <result column="remark" property="remark" />
+        <result column="origin" property="origin" />
+    </resultMap>
+
+    <select id="findByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select id,
+                cellphone,
+                email,
+                cert_no,
+                user_name,
+                positive_img,
+                back_img,
+                hold_img,
+                create_time,
+                state,
+                remark
+         from t_user_identity
+         where user_id = #{userId}
+    </select>
+
+    <select id="findIdentityList" resultMap="BaseResultMap" parameterType="com.ocean.identity.domain.UserIdentityInDto">
+          select   b.id,
+                    b.cert_no,
+                    a.positive_img,
+                    a.back_img,
+                    a.hold_img,
+                    a.create_time,
+                    a.state,
+                    a.remark,
+                    b.cellphone,
+                    b.user_name,
+                    b.email,
+                    b.origin
+             from t_user_identity a
+        left join t_user b
+              on a.user_id = b.id
+        <where>
+            <if test="userId != null and userId != ''">
+                and (b.cellphone LIKE CONCAT('%', #{userId}, '%') or u.id LIKE CONCAT('%', #{userId}, '%'))
+            </if>
+            <if test="startTime != null and endTime != null and startTime != '' and endTime != ''">
+                and a.create_time BETWEEN #{startTime} and #{endTime}
+            </if>
+            <if test="state != null and (state == 0 or state!='') ">
+                and a.state = #{state}
+            </if>
+            <if test="origin != null and origin != ''">
+                and b.origin =#{origin}
+            </if>
+        </where>
+        order by a.state asc
+    </select>
+
+    <update id="auditUserIdentity">
+        UPDATE t_user_identity
+        <set>
+            <if test="state != null">
+                state=#{state},
+            </if>
+            <if test="remark != null">
+                remark=#{remark},
+            </if>
+        </set>
+        WHERE id =#{id}
+    </update>
+</mapper>
