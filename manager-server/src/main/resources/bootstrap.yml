@@ -4,7 +4,7 @@ spring:
   application:
     name: manager-server
   datasource:
-    name: largeuserdb
+    name: homemonitor
   profiles:
     active: test
   jackson:
