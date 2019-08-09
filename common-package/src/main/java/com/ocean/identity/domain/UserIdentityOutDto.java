@@ -11,8 +11,6 @@ public class UserIdentityOutDto {
 
     private Long id;
     private Long userId;
-    private String cellphone;
-    private String email;
     //身份证正面
     private String positiveImg;
     //身份证反面
@@ -29,8 +27,6 @@ public class UserIdentityOutDto {
     private String userName;
     //拒绝原因
     private String remark;
-    //来源
-    private Integer origin;
 
 
 

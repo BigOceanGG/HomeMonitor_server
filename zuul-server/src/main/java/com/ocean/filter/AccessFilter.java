@@ -57,7 +57,7 @@ public class AccessFilter extends ZuulFilter  {
             if(requestURI.indexOf("login/")>0
                     ||  requestURI.indexOf("common/") > 0
                     ||  requestURI.indexOf("/auth") > 0
-                    ||  requestURI.indexOf("/geetest") > 0
+                    ||  requestURI.indexOf("/app") > 0
             ){
                 logger.info("requestURI："+requestURI);
 //                addLogInfo(request);

@@ -3,8 +3,6 @@
 <mapper namespace="com.ocean.identity.mapper.IdentityMapper">
     <resultMap id="BaseResultMap" type="com.ocean.identity.domain.UserIdentityOutDto">
         <id column="id" property="id" jdbcType="BIGINT"/>
-        <result column="cellphone" property="cellphone" />
-        <result column="email" property="email" />
         <result column="cert_no" property="certNo" />
         <result column="user_name" property="userName" />
         <result column="positive_img" property="positiveImg" />
@@ -13,13 +11,10 @@
         <result column="create_time" property="createTime" />
         <result column="state" property="state" />
         <result column="remark" property="remark" />
-        <result column="origin" property="origin" />
     </resultMap>
 
     <select id="findByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select id,
-                cellphone,
-                email,
                 cert_no,
                 user_name,
                 positive_img,
