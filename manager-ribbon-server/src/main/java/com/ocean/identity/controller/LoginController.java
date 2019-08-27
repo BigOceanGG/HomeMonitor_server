@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
+import java.util.HashMap;
 
 @RestController
 @Api(value = "系统用户", tags = "系统用户")
@@ -30,6 +31,14 @@ public class LoginController extends BaseController {
         String cellphone = userInDto.getCellphone();
         String password = userInDto.getPassword();
         String typeCode = userInDto.getTypeCode();
-        return responseUtils.getReturnMessage(0, enumUtils.getTipMsg(userInDto.getTypeCode(), "LOGIN_SUCCESSFUL").getMsg());
+        Map<String,Object> map = new HashMap<String,Object>();
+        Map<String,Object> retMap = new HashMap<String,Object>();
+        retMap.put("avatar",userInDto.getAvatar());
+        retMap.put("userId",userInDto.getId());
+        retMap.put("userName",userInDto.getUserName());
+        map.put("user",retMap);
+        map.put("token","aabbcc");
+        map.put("roleList","admin");
+        return responseUtils.getReturnMessage(0, enumUtils.getTipMsg(userInDto.getTypeCode(), "LOGIN_SUCCESSFUL").getMsg(),map);
     }
 }
